@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerTech - Empowering Your Business Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #00d4ff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: #ffffff;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .power-icon-small {
+            width: 35px;
+            height: 35px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .power-icon-small::before {
+            content: '';
+            width: 2px;
+            height: 12px;
+            background: var(--primary);
+            position: absolute;
+            top: 3px;
+        }
+
+        .power-icon-small::after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            border: 2px solid var(--primary);
+            border-top: none;
+            border-radius: 0 0 50% 50%;
+            position: absolute;
+            top: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .power-icon-large {
+            width: 300px;
+            height: 300px;
+            border: 8px solid var(--primary);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .power-icon-large::before {
+            content: '';
+            width: 8px;
+            height: 100px;
+            background: var(--primary);
+            position: absolute;
+            top: 30px;
+        }
+
+        .power-icon-large::after {
+            content: '';
+            width: 120px;
+            height: 120px;
+            border: 8px solid var(--primary);
+            border-top: none;
+            border-radius: 0 0 50% 50%;
+            position: absolute;
+            top: 100px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            padding: 2rem;
+            border-radius: 20px;
+            background: var(--light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .about-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            border-color: var(--primary);
+        }
+
+        .service-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-item p {
+            color: #666;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #f0f0f0;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            border-color: var(--primary);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid var(--primary);
+            position: relative;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .package-name {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 20px 0;
+        }
+
+        .best-for {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .features {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .features li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .timeline {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 25px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .power-icon-footer {
+            width: 35px;
+            height: 35px;
+            border: 2px solid white;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .power-icon-footer::before {
+            content: '';
+            width: 2px;
+            height: 12px;
+            background: white;
+            position: absolute;
+            top: 3px;
+        }
+
+        .power-icon-footer::after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            border: 2px solid white;
+            border-top: none;
+            border-radius: 0 0 50% 50%;
+            position: absolute;
+            top: 10px;
+        }
+
+        .footer-text {
+            color: #999;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .power-icon-large {
+                width: 200px;
+                height: 200px;
+            }
+
+            .power-icon-large::before {
+                height: 70px;
+                top: 20px;
+            }
+
+            .power-icon-large::after {
+                width: 80px;
+                height: 80px;
+                top: 70px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo-nav">
+                <div class="power-icon-small"></div>
+                PowerTech
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Empowering Your Business Online</h1>
+                <p>We build modern, responsive websites that help small businesses and entrepreneurs thrive in the digital world.</p>
+                <a href="https://forms.google.com" class="hero-cta" target="_blank">Get Started Today →</a>
+            </div>
+            <div class="hero-visual">
+                <div class="power-icon-large"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <h2 class="section-title">About Us</h2>
+            <p class="section-subtitle">We're passionate about helping businesses establish their online presence with cutting-edge web solutions.</p>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">🚀</div>
+                    <h3>Fast Delivery</h3>
+                    <p>We deliver professional websites in as little as one week, getting you online quickly without compromising quality.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">💎</div>
+                    <h3>Premium Quality</h3>
+                    <p>Every website we build is crafted with attention to detail, modern design principles, and best practices.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🎯</div>
+                    <h3>Results Driven</h3>
+                    <p>We focus on creating websites that not only look great but also drive real business results and conversions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive web solutions tailored to your business needs</p>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>🎨 Web Design</h3>
+                    <p>Beautiful, modern designs that capture your brand identity and engage your audience.</p>
+                </div>
+                <div class="service-item">
+                    <h3>💻 Web Development</h3>
+                    <p>Responsive, fast-loading websites built with the latest technologies and best practices.</p>
+                </div>
+                <div class="service-item">
+                    <h3>📱 Mobile Optimization</h3>
+                    <p>Fully responsive designs that work flawlessly on all devices and screen sizes.</p>
+                </div>
+                <div class="service-item">
+                    <h3>📅 Booking Systems</h3>
+                    <p>Integrated scheduling solutions to streamline client appointments and bookings.</p>
+                </div>
+                <div class="service-item">
+                    <h3>🔍 SEO Setup</h3>
+                    <p>Search engine optimization to help your business get found online by potential customers.</p>
+                </div>
+                <div class="service-item">
+                    <h3>📊 Analytics</h3>
+                    <p>Track your website performance and visitor behavior with integrated analytics tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Pricing Plans</h2>
+            <p class="section-subtitle">Choose the perfect package for your business needs</p>
+            
+            <div class="pricing-grid">
+                <!-- Starter Package -->
+                <div class="pricing-card">
+                    <h2 class="package-name">Starter Package</h2>
+                    <div class="price">$350</div>
+                    <p class="best-for"><strong>Best for:</strong> Small businesses and entrepreneurs who need a simple, professional online presence.</p>
+                    
+                    <ul class="features">
+                        <li>1-page scrolling website (Home, About, Services, Contact)</li>
+                        <li>Custom colors and theme based on your brand</li>
+                        <li>Mobile-friendly responsive layout</li>
+                        <li>Basic contact form (forwards messages to your inbox)</li>
+                        <li>Deployment on server of your choice (monthly hosting fees paid by you)</li>
+                        <li>1 round of revisions</li>
+                    </ul>
+
+                    <div class="timeline">Timeline: ~1 week</div>
+                    <a href="https://forms.google.com" class="cta-button" target="_blank">Get Started</a>
+                </div>
+
+                <!-- Professional Package -->
+                <div class="pricing-card featured">
+                    <span class="featured-badge">MOST POPULAR</span>
+                    <h2 class="package-name">Professional Package</h2>
+                    <div class="price">$750</div>
+                    <p class="best-for"><strong>Best for:</strong> Growing businesses that require professional features like client scheduling and automation.</p>
+                    
+                    <ul class="features">
+                        <li>Up to 3 pages (Home, About, Services)</li>
+                        <li>Custom color palette and light branding setup</li>
+                        <li>Built-in scheduling system (e.g., Calendly or embedded booking form)</li>
+                        <li>Automated email confirmations for bookings</li>
+                        <li>Custom mini admin dashboard (to view bookings or inquiries)</li>
+                        <li>Subtle animations (hover and scroll effects)</li>
+                        <li>Free hosting for 1 year</li>
+                        <li>2 rounds of revisions</li>
+                    </ul>
+
+                    <div class="timeline">Timeline: ~2 weeks</div>
+                    <a href="https://forms.google.com" class="cta-button" target="_blank">Get Started</a>
+                </div>
+
+                <!-- Premium Package -->
+                <div class="pricing-card">
+                    <h2 class="package-name">Premium Package</h2>
+                    <div class="price">$1,400</div>
+                    <p class="best-for"><strong>Best for:</strong> Established businesses seeking a complete web solution with advanced functionality and full control.</p>
+                    
+                    <ul class="features">
+                        <li>Up to 5 pages (Home, About, Services, Blog, Booking, Contact, Testimonials, Resources)</li>
+                        <li>Custom admin dashboard (manage bookings, messages, and content)</li>
+                        <li>Advanced booking system with email + optional text notifications</li>
+                        <li>Full SEO setup and Google indexing</li>
+                        <li>Analytics integration (track visitors and page views)</li>
+                        <li>Interactive animations and scrolling effects</li>
+                        <li>Blog or testimonial management</li>
+                        <li>Free domain setup assistance (if needed)</li>
+                        <li>Free hosting & maintenance for 1 year</li>
+                        <li>Priority support and 3 rounds of revisions</li>
+                    </ul>
+
+                    <div class="timeline">Timeline: ~3 weeks</div>
+                    <a href="https://forms.google.com" class="cta-button" target="_blank">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="power-icon-footer"></div>
+                PowerTech
+            </div>
+            <p class="footer-text">Empowering Your Business Online</p>
+            <p class="footer-text">© 2025 PowerTech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
