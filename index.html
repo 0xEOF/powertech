@@ -508,6 +508,98 @@
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
 
+        /* Projects Section */
+        .projects {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+            overflow: hidden;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-slider {
+            margin-top: 3rem;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .projects-track {
+            display: flex;
+            gap: 3rem;
+            width: fit-content;
+            animation: scroll 25s linear infinite;
+        }
+
+        .projects-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-250px * 3 - 3rem * 3));
+            }
+        }
+
+        .project-card {
+            flex-shrink: 0;
+            width: 250px;
+            height: 120px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .project-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .logo-icon {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .logo-text {
+            color: var(--primary);
+        }
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -797,7 +889,7 @@
                 <!-- Premium Package -->
                 <div class="pricing-card">
                     <h2 class="package-name">Premium Package</h2>
-                    <div class="price">$1,800</div>
+                    <div class="price">$1,400</div>
                     <p class="best-for"><strong>Best for:</strong> Established businesses seeking a complete web solution with advanced functionality and full control.</p>
                     
                     <ul class="features">
@@ -823,47 +915,83 @@
     <!-- Projects Showcase Section -->
     <section class="projects">
         <div class="projects-container">
-            <h2 class="section-title">Our Psrtners</h2>
+            <h2 class="section-title">Our Work</h2>
             <p class="section-subtitle">Trusted by businesses across industries</p>
             
             <div class="projects-slider">
                 <div class="projects-track">
-                   <a href="https://blinkinbox.club" target="_blank" class="project-card">
+                     <a href="https://blinkinbox.club" target="_blank" class="project-card">
+
                         <div class="project-logo">
+
                             <a href="https://blinkinbox.club/favicon.ico" target="_blank" class="project-card">
+
                             <div class="logo-text">Blinkinbox</div>
+
                         </div>
+
                     </a>
+
                     <a href="https://casacustoms.shop" target="_blank" class="project-card">
+
                         <div class="project-logo">
+
                             <a href="https://casacustoms.shop/favicon.ico" target="_blank" class="project-card">
+
                             <div class="logo-text">CasaCustoms</div>
+
                         </div>
+
                     </a>
+
                     <a href="https://psiwellnessinc.com" target="_blank" class="project-card">
+
                         <div class="project-logo">
+
                             <a href="https://psiwellnessinc.com/favicon.ico" target="_blank" class="project-card">
+
                             <div class="logo-text">Psi Wellness</div>
+
                         </div>
+
                     </a>
+
                     <!-- Duplicate for seamless loop -->
+
                    <a href="https://blinkinbox.club" target="_blank" class="project-card">
+
                         <div class="project-logo">
+
                             <a href="https://blinkinbox.club/favicon.ico" target="_blank" class="project-card">
+
                             <div class="logo-text">Blinkinbox</div>
+
                         </div>
+
                     </a>
+
                     <a href="https://casacustoms.shop" target="_blank" class="project-card">
+
                         <div class="project-logo">
+
                             <a href="https://casacustoms.shop/favicon.ico" target="_blank" class="project-card">
+
                             <div class="logo-text">CasaCustoms</div>
+
                         </div>
+
                     </a>
+
                     <a href="https://psiwellnessinc.com" target="_blank" class="project-card">
+
                         <div class="project-logo">
+
                             <a href="https://psiwellnessinc.com/favicon.ico" target="_blank" class="project-card">
+
                             <div class="logo-text">Psi Wellness</div>
+
                         </div>
+
                     </a>
                 </div>
             </div>
